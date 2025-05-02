@@ -1,0 +1,225 @@
+/* src/app/todo/todo.component.scss */
+// Define variables for colors and spacing
+$primary-color: #007bff;
+$primary-gradient: linear-gradient(135deg, #007bff, #0056b3);
+$success-color: #28a745;
+$success-hover-color: #218838;
+$danger-color: #dc3545;
+$danger-hover-color: #c82333;
+$text-muted: #6c757d;
+$spacing-sm: 10px;
+$spacing-md: 20px;
+$spacing-lg: 40px;
+$border-radius: 12px;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+// Mixin for button styles
+@mixin button-style($bg-color, $hover-color) {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: $bg-color;
+    border: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+/* General container styling */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: $spacing-md;
+}
+
+/* Card styling */
+.card {
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
+    &-header {
+        border-radius: $border-radius $border-radius 0 0;
+        background: $primary-gradient;
+        color: white;
+        text-align: center;
+        padding: $spacing-sm;
+    }
+
+    &-footer {
+        background-color: #f8f9fa;
+        border-radius: 0 0 $border-radius $border-radius;
+        font-size: 0.9rem;
+        color: $text-muted;
+    }
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Input group styling */
+.input-group {
+    margin-bottom: $spacing-md;
+
+    .form-control {
+        border-radius: 8px 0 0 8px;
+    }
+
+    .btn {
+        border-radius: 0 8px 8px 0;
+    }
+}
+
+.input-group .form-control {
+    border-radius: 8px 0 0 8px;
+}
+
+.input-group .btn {
+    border-radius: 0 8px 8px 0;
+}
+
+/* List group styling */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: #f1f3f5;
+    }
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.list-group-item:hover {
+    background-color: #f1f3f5;
+}
+
+/* Task text styling */
+.text-decoration-line-through {
+    text-decoration: line-through;
+    color: $text-muted;
+}
+
+/* Checkbox styling */
+.form-check-input {
+    margin-right: $spacing-sm;
+    cursor: pointer;
+}
+
+/* Button styling */
+.btn-success {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #28a745;
+    border: none;
+    transition: background-color 0.2s ease;
+    @include button-style($success-color, $success-hover-color);
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #dc3545;
+    border: none;
+    transition: background-color 0.2s ease;
+    @include button-style($danger-color, $danger-hover-color);
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    color: $text-muted;
+    margin-top: $spacing-md;
+
+    i {
+        font-size: 2.5rem;
+        margin-bottom: $spacing-sm;
+        color: $primary-color;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: $spacing-sm;
+    }
+
+    .card-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn {
+        width: 100%;
+        margin-top: $spacing-sm;
+    }
+}
+
+/* Align buttons horizontally */
+.list-group-item .btn-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add spacing between buttons */
+}
