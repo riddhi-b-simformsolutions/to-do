@@ -2,6 +2,8 @@
 
 This is a simple **To-Do List Application** built with Angular and styled using Bootstrap. The app allows users to add, edit, delete, and mark tasks as completed.
 
+<img width="657" alt="Screenshot 2025-05-02 at 7 42 36 PM" src="https://github.com/user-attachments/assets/e05adad2-4585-4caf-8b7d-763ac25fbbbb" />
+
 ## Features
 
 * **Add Tasks**: Add new tasks to your to-do list.
