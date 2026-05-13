@@ -37,6 +37,7 @@ describe('TodoComponent', () => {
       component.tasks = [
         { name: 'Task 1', completed: false, isEditing: false, selected: false },
       ];
+      component.selectedCount = 0;
       expect(component.hasSelectedTasks).toBe(false);
     });
 
@@ -45,7 +46,31 @@ describe('TodoComponent', () => {
         { name: 'Task 1', completed: false, isEditing: false, selected: true },
         { name: 'Task 2', completed: false, isEditing: false, selected: false },
       ];
+      component.selectedCount = 1;
       expect(component.hasSelectedTasks).toBe(true);
+    });
+  });
+
+  describe('updateSelectedCount', () => {
+    it('should update selectedCount to reflect currently selected tasks', () => {
+      component.tasks = [
+        { name: 'Task 1', completed: false, isEditing: false, selected: true },
+        { name: 'Task 2', completed: false, isEditing: false, selected: false },
+        { name: 'Task 3', completed: false, isEditing: false, selected: true },
+      ];
+      component.updateSelectedCount();
+      expect(component.selectedCount).toBe(2);
+      expect(component.hasSelectedTasks).toBe(true);
+    });
+
+    it('should set selectedCount to 0 when no tasks are selected', () => {
+      component.tasks = [
+        { name: 'Task 1', completed: false, isEditing: false, selected: false },
+      ];
+      component.selectedCount = 1; // simulate stale count
+      component.updateSelectedCount();
+      expect(component.selectedCount).toBe(0);
+      expect(component.hasSelectedTasks).toBe(false);
     });
   });
 
@@ -75,11 +100,13 @@ describe('TodoComponent', () => {
         { name: 'Task 2', completed: false, isEditing: false, selected: false },
         { name: 'Task 3', completed: false, isEditing: false, selected: true },
       ];
+      component.selectedCount = 2;
       component.showConfirmModal = true;
       component.confirmBulkDelete();
       expect(component.tasks.length).toBe(1);
       expect(component.tasks[0].name).toBe('Task 2');
       expect(component.showConfirmModal).toBe(false);
+      expect(component.selectedCount).toBe(0);
     });
 
     it('should not delete tasks that are not selected', () => {

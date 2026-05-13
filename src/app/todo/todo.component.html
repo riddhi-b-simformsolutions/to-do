@@ -37,6 +37,7 @@
                             type="checkbox"
                             class="form-check-input me-2"
                             [(ngModel)]="task.selected"
+                            (change)="updateSelectedCount()"
                             title="Select task"
                             aria-label="Select task for deletion"
                         />

@@ -9,9 +9,14 @@ export class TodoComponent {
   tasks: { name: string; completed: boolean; isEditing: boolean; selected: boolean }[] = [];
   newTask: string = '';
   showConfirmModal = false;
+  selectedCount = 0;
 
   get hasSelectedTasks(): boolean {
-    return this.tasks.some(task => task.selected);
+    return this.selectedCount > 0;
+  }
+
+  updateSelectedCount() {
+    this.selectedCount = this.tasks.filter(task => task.selected).length;
   }
 
   addTask() {
@@ -25,6 +30,7 @@ export class TodoComponent {
     const confirmDelete = confirm('Are you sure you want to delete this task?');
     if (confirmDelete) {
       this.tasks.splice(index, 1);
+      this.updateSelectedCount();
     }
   }
 
@@ -50,6 +56,7 @@ export class TodoComponent {
 
   confirmBulkDelete() {
     this.tasks = this.tasks.filter(task => !task.selected);
+    this.selectedCount = 0;
     this.showConfirmModal = false;
   }
 }
