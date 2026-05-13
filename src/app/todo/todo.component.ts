@@ -6,12 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent {
-  tasks: { name: string; completed: boolean; isEditing: boolean }[] = [];
+  tasks: { name: string; completed: boolean; isEditing: boolean; selected: boolean }[] = [];
   newTask: string = '';
+  showConfirmModal = false;
+
+  get hasSelectedTasks(): boolean {
+    return this.tasks.some(task => task.selected);
+  }
 
   addTask() {
     if (this.newTask.trim()) {
-      this.tasks.push({ name: this.newTask, completed: false, isEditing: false });
+      this.tasks.push({ name: this.newTask, completed: false, isEditing: false, selected: false });
       this.newTask = '';
     }
   }
@@ -33,5 +38,18 @@ export class TodoComponent {
 
   saveTask(index: number) {
     this.tasks[index].isEditing = false;
+  }
+
+  openBulkDeleteModal() {
+    this.showConfirmModal = true;
+  }
+
+  cancelBulkDelete() {
+    this.showConfirmModal = false;
+  }
+
+  confirmBulkDelete() {
+    this.tasks = this.tasks.filter(task => !task.selected);
+    this.showConfirmModal = false;
   }
 }
