@@ -56,7 +56,7 @@ export class TodoComponent {
 
   confirmBulkDelete() {
     this.tasks = this.tasks.filter(task => !task.selected);
-    this.selectedCount = 0;
+    this.updateSelectedCount();
     this.showConfirmModal = false;
   }
 }
